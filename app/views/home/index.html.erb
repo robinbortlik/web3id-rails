@@ -1,0 +1,21 @@
+<% if current_account %>
+  <h1 class="text-3xl font-bold text-center">Welcome</h1>
+
+  <div class="text-center"><%= current_account.did %></div>
+  <div class="text-center"><%= current_account.name %></div>
+  <div class="text-center"><%= current_account.email %></div>
+  <%= link_to "/logout", method: :delete, class: "flex items-center justify-center mx-auto mt-10 px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10" do %>
+    Logout
+  <% end %>
+
+<% else %>
+  <h1 class="text-3xl font-bold text-center">
+    Would you like to login via Web3 ID ?
+  </h1>
+
+  <%= form_tag account_web3id_omniauth_authorize_path, data: { turbo: false } do %>
+    <button class="flex items-center justify-center mx-auto mt-10 px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+      Login
+    </button>
+  <% end %>
+<% end %>
